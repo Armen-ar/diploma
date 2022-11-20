@@ -88,22 +88,24 @@ Docker_compose;
 
 ### Действия, потребуется 4 контейнера - front, api, migrations и postgres:
 
-1. Заполнить файл Dockerfile.
+1. Создать Docker-образ, файл Dockerfile.
 
-2. Командой "docker build -t diploma ." создать контейнер с названием diploma.
+2. Настроить docker-compose.yaml и запустить приложение.
 
-3. Командой "docker network create diploma_network" создать сеть с названием diploma_network.
+3. Командой "docker-compose up -d" создать контейнер.
 
-4. Командой "docker run -d --network=diploma_network --network-alias pg -e POSTGRES_USER=postgres
+4. Командой "docker network create diploma_network" создать сеть с названием diploma_network.
+
+5. Командой "docker run -d --network=diploma_network --network-alias pg -e POSTGRES_USER=postgres
 -e POSTGRES_PASSWORD=12345 -e POSTGRES_DB=todolist --name=pg -v ${pwd}/todolist_postgres_data:/var/lib/postgresql/data 
 diploma" создать контейнер с postgres и директорию 'todolist_postgres_data' в корне проекта.
 
-5. Командой "docker run --network=diploma_network -d -p 80:80 --name=diploma diploma" запустить контейнер в сети 
+6. Командой "docker run --network=diploma_network -d -p 80:80 --name=diploma diploma" запустить контейнер в сети 
 diploma_network, режим демона и пробросить порты.
 
-6. Командой "docker exec -it diploma /bin/bash" войти в контейнер и там командой "_____" выполнить миграции
+7. Командой "docker exec -it diploma /bin/bash" войти в контейнер и там командой "_____" выполнить миграции
 
-7. В dockerhub создать новый репозиторий и путь прописать в файле docker-compose.yaml.
+8. В dockerhub создать новый репозиторий и путь прописать в файле docker-compose.yaml.
 
-8. 
+9. 
  
