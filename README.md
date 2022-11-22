@@ -53,7 +53,7 @@
 
 4. В файле "core/models.py" добавить модель пользователя, которая наследуется от AbstractUser.
 
-5. Настроить подключение к базе данных: Установить Postgres командой `docker-compose up -d`, создать базу данных, 
+5. Настроить подключение к базе данных: Установить Postgres командой `docker-compose up --build -d`, создать базу данных, 
 создать пользователя, назначить пароль пользователю, предоставить права пользователю на базу данных, создать 
 миграцию командой `python manage.py makemigrations` и применить миграции командой `python manage.py migrate`.
 
@@ -92,20 +92,16 @@ Docker_compose;
 
 2. Настроить docker-compose.yaml и запустить приложение.
 
-3. Командой "docker-compose up -d" создать контейнер.
+3. Командой "docker-compose up -d" создать контейнеры и открыть в браузере страничку авторизации.
 
-4. Командой "docker network create diploma_network" создать сеть с названием diploma_network.
+4. В Docker Desktop в терминале контейнера api создать пользователя и зайти в админку по логину и паролю.
 
-5. Командой "docker run -d --network=diploma_network --network-alias pg -e POSTGRES_USER=postgres
--e POSTGRES_PASSWORD=12345 -e POSTGRES_DB=todolist --name=pg -v ${pwd}/todolist_postgres_data:/var/lib/postgresql/data 
-diploma" создать контейнер с postgres и директорию 'todolist_postgres_data' в корне проекта.
+5. Командой "docker exec -it diploma /bin/bash" войти в контейнер и там командой "_____" выполнить миграции 
 
-6. Командой "docker run --network=diploma_network -d -p 80:80 --name=diploma diploma" запустить контейнер в сети 
-diploma_network, режим демона и пробросить порты.
+6. В dockerhub создать новый репозиторий и путь прописать в файле docker-compose.yaml.
 
-7. Командой "docker exec -it diploma /bin/bash" войти в контейнер и там командой "_____" выполнить миграции
+7. Установить Docker-compose на виртуальную машину.
 
-8. В dockerhub создать новый репозиторий и путь прописать в файле docker-compose.yaml.
+8. 
 
-9. 
  

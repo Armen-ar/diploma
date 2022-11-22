@@ -11,6 +11,7 @@ services:
   api:
     build:
       context: .
+#    image: armenar/diploma_app
       dockerfile: Dockerfile
     restart: always
     env_file:
@@ -24,6 +25,7 @@ services:
       - "8000:8000"
   migrations:
     build: .
+#    image: armenar/diploma_app
     depends_on:
       db:
         condition: service_healthy
