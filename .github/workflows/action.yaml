@@ -43,10 +43,10 @@ jobs:
       - name: deploy app
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secret.HOST }}
-          username: ${{ secret.USERNAME }}
-          password: ${{ secret.PASSWORD }}
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
           script: |
             cd diploma_ci
-            echo ${{ secret.PASSWORD }} | sudo -S docker-compose down
-            echo ${{ secret.PASSWORD }} | sudo -S docker-compose up -d
+            echo ${{ secrets.PASSWORD }} | sudo -S docker-compose down
+            echo ${{ secrets.PASSWORD }} | sudo -S docker-compose up -d
