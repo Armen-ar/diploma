@@ -49,7 +49,8 @@ INSTALLED_APPS = [
 
     # this-party apps
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -144,3 +145,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'core.User'
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = env.str('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = env.str('SOCIAL_AUTH_VK_OAUTH2_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+LOGIN_REDIRECT_URL = '/categories'
