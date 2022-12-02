@@ -33,6 +33,8 @@ services:
       sh -c "python ./manage.py migrate"
   db:
     image: postgres:latest
+    env_file:
+      - .env_docker
     environment:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
