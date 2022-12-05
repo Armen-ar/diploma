@@ -1,10 +1,14 @@
 from django.db import models
-from django.utils import timezone
+from goals.models.mixin import DatesModelMixin
 
 from goals.models.category import GoalCategory
 
 
-class Goal(models.Model):
+class Goal(DatesModelMixin):
+
+    class Meta:
+        verbose_name = 'Цель'
+        verbose_name_plural = 'Цели'
 
     class Status(models.IntegerChoices):
         to_do = 1, 'К выполнению'
@@ -37,11 +41,3 @@ class Goal(models.Model):
         related_name='goals',
         on_delete=models.CASCADE
     )
-    created = models.DateTimeField(verbose_name='Дата создания')
-    updated = models.DateTimeField(verbose_name='Дата последнего обновления')
-
-    def save(self, *args, **kwargs):
-        if not self.id:
-            self.created = timezone.now()
-        self.updated = timezone.now()
-        return super().save(*args, **kwargs)

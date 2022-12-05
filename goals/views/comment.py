@@ -18,10 +18,9 @@ class GoalCommentListView(generics.ListAPIView):
     filter_backends = [
         DjangoFilterBackend,
         filters.OrderingFilter,
-        filters.SearchFilter,
     ]
-    ordering_fields = ['goal']
-    ordering = ['-created']
+    filterset_fields = ['goal']
+    ordering = ['-id']
 
     def get_queryset(self):
         return GoalComment.objects.filter(user=self.request.user)
