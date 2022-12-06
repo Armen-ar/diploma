@@ -15,7 +15,6 @@ class GoalCategory(DatesModelMixin):
         verbose_name='Доска',
         on_delete=models.PROTECT,
         related_name='categories',
-        null=True
     )
     title = models.CharField(verbose_name='Название', max_length=255)
     user = models.ForeignKey('core.User', verbose_name='Автор', on_delete=models.PROTECT)
