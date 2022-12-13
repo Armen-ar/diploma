@@ -6,8 +6,12 @@ class DatesModelMixin(models.Model):
     class Meta:
         abstract = True
 
-    created = models.DateTimeField(verbose_name='Дата создания')
-    updated = models.DateTimeField(verbose_name='Дата последнего обновления')
+    created = models.DateTimeField(
+        verbose_name='Дата создания'
+    )
+    updated = models.DateTimeField(
+        verbose_name='Дата последнего обновления'
+    )
 
     def save(self, *args, **kwargs):
         if not self.id:

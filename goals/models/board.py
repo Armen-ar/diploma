@@ -7,8 +7,14 @@ class Board(DatesModelMixin):
         verbose_name = 'Доска'
         verbose_name_plural = 'Доски'
 
-    title = models.CharField(verbose_name='Название', max_length=255)
-    is_deleted = models.BooleanField(verbose_name='Удалена', default=False)
+    title = models.CharField(
+        verbose_name='Название',
+        max_length=255
+    )
+    is_deleted = models.BooleanField(
+        verbose_name='Удалена',
+        default=False
+    )
 
 
 class BoardParticipant(DatesModelMixin):
@@ -35,5 +41,7 @@ class BoardParticipant(DatesModelMixin):
         related_name='participants',
     )
     role = models.PositiveSmallIntegerField(
-        verbose_name='Роль', choices=Role.choices, default=Role.owner
+        verbose_name='Роль',
+        choices=Role.choices,
+        default=Role.owner
     )

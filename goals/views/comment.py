@@ -2,12 +2,16 @@ from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import generics, filters, permissions
 
 from goals.models.comment import GoalComment
+from goals.permissions import CommentPermissions
 from goals.serializers.comment import GoalCommentSerializer, GoalCommentCreateSerializer
 
 
 class GoalCommentCreateView(generics.CreateAPIView):
     model = GoalComment
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [
+        permissions.IsAuthenticated,
+        CommentPermissions
+    ]
     serializer_class = GoalCommentCreateSerializer
 
 
@@ -23,16 +27,23 @@ class GoalCommentListView(generics.ListAPIView):
     ordering = ['-id']
 
     def get_queryset(self):
-        return GoalComment.objects.filter(user=self.request.user)
+        return GoalComment.objects.filter(
+            goal__category__board__participants__user=self.request.user
+        )
 
 
 class GoalCommentView(generics.RetrieveUpdateDestroyAPIView):
     model = GoalComment
     serializer_class = GoalCommentSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [
+        permissions.IsAuthenticated,
+        CommentPermissions
+    ]
 
     def get_queryset(self):
-        return GoalComment.objects.filter(user=self.request.user)
+        return GoalComment.objects.filter(
+            goal__category__board__participants__user=self.request.user
+        )
 
     def perform_destroy(self, instance):
         instance.is_deleted = True
