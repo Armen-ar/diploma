@@ -27,6 +27,7 @@ environ.Env.read_env(ENV_FILE_PATH)
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
+TG_TOKEN = env.str('TG_TOKEN')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env.bool('DEBUG', default=True)
@@ -47,12 +48,14 @@ INSTALLED_APPS = [
     # user-defined apps
     'core',
     'goals',
+    'bot',
 
     # this-party apps
+    'drf_spectacular',
     'corsheaders',
     'rest_framework',
     'social_django',
-    'django_filters'
+    'django_filters',
 ]
 
 MIDDLEWARE = [
