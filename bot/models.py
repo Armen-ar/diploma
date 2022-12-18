@@ -7,14 +7,18 @@ class TgUser(models.Model):
         verbose_name='Пользовательский идентификатор.'
     )
     user = models.ForeignKey(
-        'core.User', 
-        on_delete=models.PROTECT, 
-        null=True, blank=True, 
+        'core.User',
+        on_delete=models.PROTECT,
+        null=True, blank=True,
         verbose_name='Пользователь.'
     )
     verification_code = models.CharField(
-        max_length=255, 
-        null=True, 
-        blank=True, 
+        max_length=255,
+        null=True,
+        blank=True,
         verbose_name='Код верификации.'
     )
+
+    class Meta:
+        verbose_name = 'Телеграмм_пользователь'
+        verbose_name_plural = 'Телеграмм_пользователи'
