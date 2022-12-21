@@ -26,7 +26,7 @@ def test_list(auth_client, new_user, goal):
     response = auth_client.get(reverse("comment_list"))
     expected_response = GoalCommentSerializer(instance=comments, many=True).data
 
-    response.data.sort(key=lambda e: e['id'])
+    response.data.sort(key=lambda e: e['id'])  # ??????????
 
     assert response.status_code == 200
     assert response.data == expected_response

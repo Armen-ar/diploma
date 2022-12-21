@@ -23,7 +23,7 @@ def test_list(auth_client, new_user, board, participant):
     response = auth_client.get(reverse("category_list"))
     expected_response = GoalCategorySerializer(instance=categories, many=True).data
 
-    response.data.sort(key=lambda e: e['id'])
+    response.data.sort(key=lambda e: e['id'])  # ??????????
 
     assert response.status_code == 200
     assert response.data == expected_response
