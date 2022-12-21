@@ -35,8 +35,6 @@ def test_list(auth_client, new_user):
                          "previous": None,
                          "results": BoardSerializer(instance=boards, many=True).data}
 
-    response.data['results'].sort(key=lambda e: e['id'])
-
     assert response.status_code == 200
     assert response.data == expected_response
 

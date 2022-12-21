@@ -25,7 +25,7 @@ class BoardListView(generics.ListAPIView):
     ]
     serializer_class = BoardSerializer
     filter_backends = [filters.OrderingFilter]
-    ordering = ['title']
+    ordering_fields = ['id']
 
     def get_queryset(self):
         return Board.objects.filter(
